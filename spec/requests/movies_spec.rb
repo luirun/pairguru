@@ -20,7 +20,7 @@ describe "Movies requests", type: :request do
       end
     end
 
-    it "displays top commenters in right order" do
+    it "display top commenters in right order" do
       expect(@counter).to eq @counter.sort_by.to_a
     end
 

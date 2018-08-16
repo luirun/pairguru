@@ -3,7 +3,6 @@ class CommentsController < ApplicationController
 
   # POST /comments
   def create
-    redirect_to new_user_registration_path && return if current_user.nil?
     @comment = Comment.new(comment_params)
     @comment.movie = Movie.find(params[:movie_id])
     @comment.user = current_user

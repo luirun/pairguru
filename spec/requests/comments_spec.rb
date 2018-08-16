@@ -18,21 +18,21 @@ RSpec.describe "Comments", type: :request do
           login
           FactoryBot.create(:comment, movie_id: movie.id, user_id: @user.id)
           visit movie_path(movie.id)
-          expect(page).not_to have_selector('.comment_form')
+          expect(page).not_to have_selector(".comment_form")
         end
       end
 
       context "didn't posted comment before" do
-        it 'display comment form' do
+        it "display comment form" do
           login
           visit movie_path(movie.id)
-          expect(page).to have_selector('.comment_form')
+          expect(page).to have_selector(".comment_form")
         end
       end
     end
 
     describe "user not logged in", :skip_before do
-      it 'encourage user to register or login' do
+      it "encourage user to register or login" do
         visit movie_path(movie.id)
         expect(page.text).to include("You have to sign up or sign in before writing a comment!")
       end

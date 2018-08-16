@@ -9,16 +9,23 @@ describe "Movies requests", type: :request do
   end
 
   describe "top commenters lists" do
-    it "displays top commenters in right order" do
+    before do
       create_list(:movie, 10)
       create_list(:user, 10)
       create_list(:comment, 50)
       visit "/movies/top_commenters"
-      counter = []
+      @counter = []
       page.find("table").find_all("tr")[1..-1].each do |row|
-        counter << row.find_all("td")[1].text
+        @counter << row.find_all("td")[1].text
       end
-      expect(counter).to eq counter.sort_by.to_a
+    end
+
+    it "displays top commenters in right order" do
+      expect(@counter).to eq @counter.sort_by.to_a
+    end
+
+    it "display only 10 records" do
+      expect(@counter.size).to eq 10
     end
   end
 end

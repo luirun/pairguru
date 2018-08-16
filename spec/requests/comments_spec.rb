@@ -3,6 +3,7 @@ require 'rails_helper'
 RSpec.describe "Comments", type: :request do
 
   describe "Comments requests", type: :request do
+
     def login
       @user = FactoryBot.build(:user)
       @user.confirmed_at = Time.zone.now
@@ -10,7 +11,7 @@ RSpec.describe "Comments", type: :request do
       sign_in @user
     end
 
-    let!(:movie) { FactoryBot.create(:movie) }
+    let(:movie) { FactoryBot.create(:movie) }
 
     describe "user logged in" do
       context "posted an comment before" do

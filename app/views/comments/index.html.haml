@@ -1,0 +1,31 @@
+%h1 Listing comments
+
+%table
+  %thead
+    %tr
+      %th User
+      %th Movie
+      %th Content
+      %th Create
+      %th Update
+      %th Destroy
+      %th
+      %th
+      %th
+
+  %tbody
+    - @comments.each do |comment|
+      %tr
+        %td= comment.user_id
+        %td= comment.movie_id
+        %td= comment.content
+        %td= comment.create
+        %td= comment.update
+        %td= comment.destroy
+        %td= link_to 'Show', comment
+        %td= link_to 'Edit', edit_comment_path(comment)
+        %td
+
+%br
+
+= link_to 'New Comment', new_comment_path

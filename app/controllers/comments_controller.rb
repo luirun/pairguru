@@ -1,5 +1,5 @@
 class CommentsController < ApplicationController
-  before_action :set_comment, only: [:update, :destroy]
+  before_action :set_comment, only: [:destroy]
 
   def create
     @comment = Comment.new(comment_params)
@@ -9,14 +9,6 @@ class CommentsController < ApplicationController
       redirect_to @comment.movie, notice: "Comment was successfully created."
     else
       redirect_to root_path, alert: "Some error occurred, comment not saved."
-    end
-  end
-
-  def update
-    if @comment.update(comment_params)
-      redirect_to @comment, notice: "Comment was successfully updated."
-    else
-      render :edit
     end
   end
 

@@ -17,6 +17,11 @@ class CommentsController < ApplicationController
     redirect_to movie_url(params["movie_id"]), notice: "Comment was successfully destroyed."
   end
 
+  def top_commenters
+    @top_commenters = User.joins(:comments).select("count('comments'.'user_id') AS comments_count, 'users'.'id', #{:name}")
+      .where("comments.created_at > ?", Time.now.utc - 7.days).group("users.id").order("comments_count DESC").limit(10)
+  end
+
   private
 
   def set_comment

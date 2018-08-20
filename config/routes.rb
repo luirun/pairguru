@@ -7,11 +7,6 @@ Rails.application.routes.draw do
       get "movies"
     end
   end
-  resources :comments, only: :top_commenters do
-    collection do
-      get :top_commenters
-    end
-  end
 
   resources :movies, only: [:index, :show] do
     resources :comments, only: [:create, :destroy]

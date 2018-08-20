@@ -23,5 +23,11 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable, :confirmable
 
+  has_many :comments, dependent: :destroy
+
   validates :phone_number, format: { with: /\A[+]?\d+(?>[- .]\d+)*\z/, allow_nil: true }
+
+  def can_comment?(movie_comments)
+    movie_comments.pluck(:user_id).include?(id) ? false : true
+  end
 end

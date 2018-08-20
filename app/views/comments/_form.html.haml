@@ -1,0 +1,19 @@
+- unless current_user.can_comment?(@movie.comments)
+  You are able to have only one comment for one movie at the same time. Delete existing comment to post new one.
+- else
+  .row
+    %h1 Leave a comment:
+    = form_for [@movie, @movie.comments.build], :html => {:class => "comment_form"}do |f|
+      .col-md-12
+        - if f.object.errors.any?
+          #error_explanation
+            %h2= "#{pluralize(f.object.errors.count, "error")} prohibited this comment from being saved:"
+            %ul
+              - f.object.errors.full_messages.each do |message|
+                %li= message
+      .col-lg-11.col-md-8.col-sm-12.no_padding
+        .field
+          = f.text_area :content, placeholder: "Write your comment here!"
+      .col-lg-1.col-md-4.col-sm-12.no_padding
+        .actions
+          = f.submit 'Save'

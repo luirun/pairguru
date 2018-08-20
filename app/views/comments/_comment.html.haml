@@ -1,0 +1,9 @@
+%p
+  %b Author:
+  = comment.user.name
+
+  %b Comment:
+  = comment.content
+
+  - if current_user == comment.user
+    = link_to 'Destroy', movie_comment_path(comment.movie, comment.id), method: :delete, data: { confirm: 'Are you sure?' }

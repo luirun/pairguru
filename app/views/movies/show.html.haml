@@ -3,3 +3,12 @@
   = @movie.description
 - if user_signed_in?
   %p= link_to 'Email me details about this movie', send_info_movie_path(@movie), class: 'btn btn-sm btn-default'
+  = render "comments/form"
+- else
+  You have to #{link_to 'sign up', new_user_registration_path} or #{link_to 'sign in', new_user_session_path}
+  before writing a comment!
+- if @comments.size != 0
+  %h2 User's comments:
+  = render @comments
+- else
+  %p No comment's found!

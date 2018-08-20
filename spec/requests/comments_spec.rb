@@ -23,4 +23,5 @@ describe "Comments requests", type: :request do
       expect(@counter.size).to eq 10
     end
   end
+
 end

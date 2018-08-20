@@ -7,6 +7,7 @@ Rails.application.routes.draw do
       get "movies"
     end
   end
+  
   resources :comments, only: :top_commenters do
     collection do
       get :top_commenters
